@@ -53,8 +53,7 @@ namespace LatestCosmosKernel
             }
             else if (array[x] == "run")
             {
-                x++;
-                Commands.run(array[x]);
+                Commands.run(array);
             }
             else
             {
