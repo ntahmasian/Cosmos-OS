@@ -34,5 +34,9 @@ namespace LatestCosmosKernel
         {
             this.value = value;
         }
+        public void updateValue(int value)
+        {
+            this.value = value;
+        }
     }
 }

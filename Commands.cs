@@ -10,7 +10,6 @@ namespace LatestCosmosKernel
 {
     class Commands
     {
-
         internal static void echo(string[] array)
         {
             var x = 1;
@@ -56,13 +55,35 @@ namespace LatestCosmosKernel
 
         internal static void div(string[] array)
         {
+            Boolean varIsInTheList = false;
             int a = find(array[1]);
             int b = find(array[2]);
-            var c = array[3];
-            int d;
-            d = a / b;
-            Variable nv = new Variable(c, d);
-            Kernel.variables.AddLast(nv);
+            String c = array[3];
+            int d = 0;
+            LinkedListNode<Variable> temp = Kernel.variables.First;
+            while (temp != null)
+            {
+                if (temp.Value.getName() == c)
+                {
+                    d = a / b;
+                    temp.Value.updateValue(d);
+                    varIsInTheList = true;
+                }
+                temp = temp.Next;
+            }
+            if (varIsInTheList == false)
+            {
+                d = a / b;
+                Variable nv = new Variable(c, d);
+                Kernel.variables.AddLast(nv);
+            }
+            //int a = find(array[1]);
+            //int b = find(array[2]);
+            //var c = array[3];
+            //int d;
+            //d = a / b;
+            //Variable nv = new Variable(c, d);
+            //Kernel.variables.AddLast(nv);
         }
 
         internal static void help()
@@ -80,42 +101,107 @@ namespace LatestCosmosKernel
 
         internal static void mul(string[] array)
         {
+            Boolean varIsInTheList = false;
             int a = find(array[1]);
             int b = find(array[2]);
-            var c = array[3];
-            int d;
-            d = a * b;
-            Variable nv = new Variable(c, d);
-            Kernel.variables.AddLast(nv);
+            String c = array[3];
+            int d = 0;
+            LinkedListNode<Variable> temp = Kernel.variables.First;
+            while (temp != null)
+            {
+                if (temp.Value.getName() == c)
+                {
+                    d = a * b;
+                    temp.Value.updateValue(d);
+                    varIsInTheList = true;
+                }
+                temp = temp.Next;
+            }
+            if (varIsInTheList == false)
+            {
+                d = a * b;
+                Variable nv = new Variable(c, d);
+                Kernel.variables.AddLast(nv);
+            }
         }
 
         internal static void sub(string[] array)
         {
+            Boolean varIsInTheList = false;
             int a = find(array[1]);
             int b = find(array[2]);
-            var c = array[3];
-            int d;
-            d = a - b;
-            Variable nv = new Variable(c, d);
-            Kernel.variables.AddLast(nv);
+            String c = array[3];
+            int d = 0;
+            LinkedListNode<Variable> temp = Kernel.variables.First;
+            while (temp != null)
+            {
+                if (temp.Value.getName() == c)
+                {
+                    d = a - b;
+                    temp.Value.updateValue(d);
+                    varIsInTheList = true;
+                }
+                temp = temp.Next;
+            }
+            if (varIsInTheList == false)
+            {
+                d = a - b;
+                Variable nv = new Variable(c, d);
+                Kernel.variables.AddLast(nv);
+            }
         }
 
         internal static void set(string[] array)
         {
-            int x = 1;
-            Variable vr = new Variable(array[x], Int32.Parse(array[x + 1]));
-            Kernel.variables.AddLast(vr);
+            String variable = array[1];
+            int value = Int32.Parse(array[2]);
+            LinkedListNode<Variable> temp = Kernel.variables.First;
+            if (temp == null)
+            {
+                Variable vr = new Variable(variable, value);
+                Kernel.variables.AddLast(vr);
+            }
+            while (temp != null)
+            {
+                if (temp.Value.getName() == variable)
+                {
+                    temp.Value.updateValue(value);
+                    break;
+                }
+                else
+                {
+                    Variable vr = new Variable(variable, value);
+                    Kernel.variables.AddLast(vr);
+                }
+                temp = temp.Next;
+            }
         }
 
         internal static void add(string[] array)
         {
+            Boolean varIsInTheList = false;
             int a = find(array[1]);
             int b = find(array[2]);
-            var c = array[3];
-            int d;
-            d = a + b;
-            Variable nv = new Variable(c, d);
-            Kernel.variables.AddLast(nv);
+            String c = array[3];
+            int d = 0;
+            LinkedListNode<Variable> temp = Kernel.variables.First;
+            while (temp != null)
+            {
+                if (temp.Value.getName() == c)
+                {
+                    d = a + b;
+                    temp.Value.updateValue(d);
+                    varIsInTheList = true;
+                }
+                temp = temp.Next;
+            }
+            if (varIsInTheList == false)
+            {
+                d = a + b;
+                Variable nv = new Variable(c, d);
+                Kernel.variables.AddLast(nv);
+            }
+        
         }
 
         internal static void run(string[] array)
